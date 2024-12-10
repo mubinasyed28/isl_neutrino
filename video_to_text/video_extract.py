@@ -11,7 +11,7 @@ hc = []
 
 def convert(gesture_folder, target_folder):
     rootPath = os.getcwd()
-    majorData = os.path.abspath(target_folder)
+    majorData = os.path.abspath(target_folder) 
 
     if not exists(majorData):
         os.makedirs(majorData)
@@ -45,7 +45,7 @@ def convert(gesture_folder, target_folder):
             count = 0
 
             # assumption only first 200 frames are important
-            while count < 201:
+            while True:
                 ret, frame = cap.read()  # extract frame
                 if ret is False:
                     break
@@ -64,13 +64,7 @@ def convert(gesture_folder, target_folder):
                 count += 1
 
             # repeat last frame untill we get 200 frames
-            while count < 201:
-                framename = os.path.splitext(video)[0]
-                framename = framename + "_frame_" + str(count) + ".jpeg"
-                hc.append([join(gesture_frames_path, framename), gesture, frameCount])
-                if not os.path.exists(framename):
-                    cv2.imwrite(framename, lastFrame)
-                count += 1
+            
 
             os.chdir(gesture_path)
             cap.release()
