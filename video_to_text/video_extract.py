@@ -1,5 +1,6 @@
 import cv2
 import os
+import mediapipe as mp
 import pickle
 from os.path import join, exists
 import handsegment as hs
@@ -44,8 +45,7 @@ def convert(gesture_folder, target_folder):
             os.chdir(gesture_frames_path)
             count = 0
 
-            # assumption only first 200 frames are important
-            while count < 201:
+            while True:
                 ret, frame = cap.read()  # extract frame
                 if ret is False:
                     break
@@ -61,15 +61,6 @@ def convert(gesture_folder, target_folder):
 
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     break
-                count += 1
-
-            # repeat last frame untill we get 200 frames
-            while count < 201:
-                framename = os.path.splitext(video)[0]
-                framename = framename + "_frame_" + str(count) + ".jpeg"
-                hc.append([join(gesture_frames_path, framename), gesture, frameCount])
-                if not os.path.exists(framename):
-                    cv2.imwrite(framename, lastFrame)
                 count += 1
 
             os.chdir(gesture_path)
