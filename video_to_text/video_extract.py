@@ -1,5 +1,6 @@
 import cv2
 import os
+import mediapipe as mp
 import pickle
 from os.path import join, exists
 import handsegment as hs
@@ -44,7 +45,10 @@ def convert(gesture_folder, target_folder):
             os.chdir(gesture_frames_path)
             count = 0
 
+<<<<<<< HEAD
             # assumption only first 200 frames are important
+=======
+>>>>>>> cbd65b273310bd3a7e48eb19d61039a730b30d8f
             while True:
                 ret, frame = cap.read()  # extract frame
                 if ret is False:
@@ -63,9 +67,12 @@ def convert(gesture_folder, target_folder):
                     break
                 count += 1
 
+<<<<<<< HEAD
             # repeat last frame untill we get 200 frames
             
 
+=======
+>>>>>>> cbd65b273310bd3a7e48eb19d61039a730b30d8f
             os.chdir(gesture_path)
             cap.release()
             cv2.destroyAllWindows()
