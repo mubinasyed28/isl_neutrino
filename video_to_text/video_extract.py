@@ -1,8 +1,9 @@
 import cv2
 import os
+import mediapipe as mp
 import pickle
 from os.path import join, exists
-import handsegment as hs
+import hs
 import argparse
 from tqdm import tqdm
 
